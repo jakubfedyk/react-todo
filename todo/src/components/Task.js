@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 const style = {
     checked: {
@@ -31,7 +31,7 @@ class Task extends Component {
                     style={this.state.checked ? style.checked : style.unChecked}
                 >
           {this.props.label}
-        </span>
+                </span>
             </div>
         );
     }

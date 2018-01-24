@@ -6,6 +6,7 @@ import List from './components/List';
 import Search from './components/Search';
 import Dashboard from './components/Dashboard'
 import './App.css';
+import ContainerTask from "./components/ContainerTask";
 
 
 class App extends Component {
@@ -14,7 +15,8 @@ class App extends Component {
         <MuiThemeProvider>
             <div className="App">
             <Header/>
-            <Router>
+                <ContainerTask/>
+                <Router>
                 <div>
                     <Route exact path="/" component={Dashboard}/>
                     <Route path="/list" component={List}/>
