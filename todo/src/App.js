@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Header from './components/Header';
 import List from './components/List';
 import Search from './components/Search';
@@ -10,12 +11,11 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-
-        <div>
+        <MuiThemeProvider>
+            <div className="App">
             <Header/>
             <Router>
                 <div>
-                    <Header/>
                     <Route exact path="/" component={Dashboard}/>
                     <Route path="/list" component={List}/>
                     <Route path="/search" component={Search}/>
@@ -24,6 +24,7 @@ class App extends Component {
             <List/>
             <Search/>
         </div>
+        </MuiThemeProvider>
     );
   }
 }
