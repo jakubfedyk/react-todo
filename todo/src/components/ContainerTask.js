@@ -1,46 +1,52 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {add, remove, search} from './state/state.js';
 import TaskList from './TaskList';
+import TextField from 'material-ui/TextField'
+
+
+const mapStateToProps = state => ({
+    tasksList: state.tasks.tasks,
+    query: state.tasks.query
+});
+
+const mapDispatchToProps = dispatch => ({
+    addTask: task => dispatch(add(task)),
+    searchTask: value => dispatch(search(value)),
+    removeTask: task => dispatch(remove(task))
+});
 
 class ContainerTask extends Component {
-    constructor(props) {
-        super(props);
-        this.textChanged = this.textChanged.bind(this);
-        this.searchChanged = this.searchChanged.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.state = {
-            query: '',
-            task: '',
-            tasks: []
-        };
-    }
 
-    textChanged(event) {
+    textChanged = (event) => {
         this.setState({task: event.target.value});
-    }
+    };
 
-    searchChanged(event) {
-        this.setState({query: event.target.value});
-    }
+    searchChanged = (event) => {
+        this.props.searchTask(event.target.value)
+    };
 
-    handleSubmit(event) {
-        this.setState({
-            tasks: this.state.tasks.concat(this.state.task),
-            task: ''
-        });
+    handleSubmit = (event) => {
+        this.props.addTask(this.state.task);
         event.preventDefault();
-    }
+    };
+
+    deleteSubmit = (task) => {
+        this.removeTask(task)
+    };
 
     render() {
         return (
             <div>
-                <input type="text" placeholder="Search..." onChange={this.searchChanged} />
-
+                <input type="text" placeholder="Search..." onChange={this.searchChanged}/>
                 <form onSubmit={this.handleSubmit}>
-                    <input type="text"
-                           value={this.state.task}
-                           placeholder="Add task..."
-                           onChange={this.textChanged}/>
-                    <input type="submit" value="Add"/>
+                    <TextField
+                        id="task"
+                        label="Task"
+                        value={this.state.task}
+                        onChange={this.handleChange}
+                        margin="normal"
+                    />
                 </form>
 
                 <h2>My tasks</h2>
@@ -48,10 +54,10 @@ class ContainerTask extends Component {
                     query={this.state.query}
                     tasks={this.state.tasks}
                 />
-
             </div>
         );
     }
 }
 
-export default ContainerTask
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContainerTask);
