@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import Checkbox from 'material-ui';
-import {ListItem, ListItemSecondaryAction, ListItemText} from 'material-ui/List';
-import DeleteIcon from 'material-ui-icons';
-import IconButton from 'material-ui-icons';
+import {Checkbox, IconButton} from 'material-ui';
+import { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
+import { DeleteIcon } from 'material-ui-icons/Delete';
 
 const style = {
     checked: {
@@ -37,7 +36,7 @@ class Task extends Component {
                 <ListItemText primary={this.props.name} style={this.state.checked ? style.checked : style.unChecked}/>
                 <ListItemSecondaryAction>
                     <IconButton aria-label="Delete">
-                        <DeleteIcon onClick={this.props.remove}/>
+                        <DeleteIcon onClick={this.props.onDelete}/>
                     </IconButton>
                 </ListItemSecondaryAction>
             </ListItem>

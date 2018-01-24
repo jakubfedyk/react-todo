@@ -1,7 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+import tasksReducer from './components/state/state';
 import App from './App';
 
+const reducers = combineReducers({
+    tasks: tasksReducer
+});
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const store = createStore(reducers);
+
+ReactDOM.render(<Provider store={store}>
+    <App />
+</Provider>, document.getElementById('root'));
