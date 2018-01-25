@@ -7,7 +7,7 @@ import List from './components/List';
 import Search from './components/Search';
 import Dashboard from './components/Dashboard'
 import './App.css';
-import ContainerTask from "./components/ContainerTask";
+import ContainerTask from "./components/Tasks/ContainerTask";
 
 
 class App extends Component {

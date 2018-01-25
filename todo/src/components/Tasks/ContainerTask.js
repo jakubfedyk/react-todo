@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {add, remove, search} from './state/state.js';
+import {add, remove, search} from '../state/state.js';
+import { connect } from 'react-redux';
 import TaskList from './TaskList';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField'
@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => ({
 class ContainerTask extends Component {
 
     state = {
-        task: ''
+        task: ' '
     };
 
 
@@ -38,13 +38,12 @@ class ContainerTask extends Component {
     };
 
     deleteSubmit = (task) => {
-        this.removeTask(task)
+        this.props.removeTask(task)
     };
 
     render() {
         return (
             <div>
-                <input type="text" placeholder="Search..." onChange={this.searchChanged}/>
                 <form onSubmit={this.handleSubmit}>
                     <TextField
                         id="task"
@@ -54,19 +53,19 @@ class ContainerTask extends Component {
                         margin="normal"
                     />
                     <Button type="submit" raised color="primary">Add</Button>
-
                 </form>
-
-                <h2>My tasks</h2>
-                <TaskList
-                    query={this.props.tasksList}
-                    tasks={this.props.query}
-                    onDelete={this.deleteSubmit}
-                />
+                    <div>
+                        <TextField placeholder="Search..." onChange={this.searchChanged}/>
+                    </div>
+                    <h2>My tasks</h2>
+                    <TaskList
+                        tasks={this.props.tasksList}
+                        query={this.props.query}
+                        onDelete={this.deleteSubmit}
+                    />
             </div>
-        );
+            )
+        }
     }
-}
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(ContainerTask);
+    export default connect(mapStateToProps, mapDispatchToProps)(ContainerTask);

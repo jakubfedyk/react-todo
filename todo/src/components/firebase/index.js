@@ -2,11 +2,11 @@ import firebase from 'firebase'
 
 var config = {
     apiKey: "",
-    authDomain: "creat-b33cf.firebaseapp.com",
-    databaseURL: "https://creat-b33cf.firebaseio.com",
+    authDomain: "",
+    databaseURL: "",
     projectId: "",
     storageBucket: "",
     messagingSenderId: ""
 };
 firebase.initializeApp(config);
-export const database = firebaseApp.database();
+export const database = firebaseApp.database();x

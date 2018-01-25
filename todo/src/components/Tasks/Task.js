@@ -5,11 +5,10 @@ import { DeleteIcon } from 'material-ui-icons/Delete';
 
 const style = {
     checked: {
+        color: 'blue',
         textDecoration: 'line-through'
     },
-    unChecked: {
-        color: 'red'
-    }
+    unChecked: {}
 };
 
 class Task extends Component {
@@ -18,9 +17,9 @@ class Task extends Component {
         checked: false
     };
 
-    handleChange(event) {
-        this.setState({ checked: event.target.checked });
-    }
+    handleChange = (event) => {
+        this.setState({ checked: !this.state.checked });
+    };
 
     render() {
         return(
