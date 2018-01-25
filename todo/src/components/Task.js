@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Checkbox, IconButton} from 'material-ui';
+import React, { Component } from 'react';
+import { Checkbox, IconButton } from 'material-ui';
 import { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
 import { DeleteIcon } from 'material-ui-icons/Delete';
 
@@ -13,14 +13,10 @@ const style = {
 };
 
 class Task extends Component {
-    constructor(props) {
-        super(props);
-        this.handleChange = this.handleChange.bind(this);
-        this.state = {
-            checked: false,
 
-        }
-    }
+    state = {
+        checked: false
+    };
 
     handleChange(event) {
         this.setState({ checked: event.target.checked });
