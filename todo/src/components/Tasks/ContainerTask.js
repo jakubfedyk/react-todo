@@ -24,20 +24,20 @@ class ContainerTask extends Component {
     };
 
 
-    textChanged = (event) => {
+    textChanged = event => {
         this.setState({task: event.target.value});
     };
 
-    searchChanged = (event) => {
+    searchChanged = event => {
         this.props.searchTask(event.target.value)
     };
 
-    handleSubmit = (event) => {
+    handleSubmit = event => {
         this.props.addTask(this.state.task);
         event.preventDefault();
     };
 
-    deleteSubmit = (task) => {
+    deleteSubmit = task => {
         this.props.removeTask(task)
     };
 

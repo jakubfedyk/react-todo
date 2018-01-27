@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Checkbox, IconButton } from 'material-ui';
+import { Checkbox } from 'material-ui';
+import  IconButton  from 'material-ui/IconButton';
 import { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
-import { DeleteIcon } from 'material-ui-icons/Delete';
+import DeleteIcon from 'material-ui-icons/Delete';
 
 const style = {
     checked: {
