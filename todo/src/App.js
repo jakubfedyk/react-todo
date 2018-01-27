@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Header from './components/Header';
 // import List from './components/List';
 // import Search from './components/Search';
@@ -24,8 +24,8 @@ class App extends Component {
     }
 }
 
-// App.propTypes = {
-//     classes: PropTypes.object.isRequired,
-// };
+App.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
 
 export default App;

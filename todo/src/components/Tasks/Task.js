@@ -32,7 +32,7 @@ class Task extends Component {
                 <ListItemText primary={this.props.name} style={this.state.checked ? style.checked : style.unChecked}/>
                 <ListItemSecondaryAction>
                     <IconButton aria-label="Delete">
-                        <DeleteIcon onClick={this.props.onDelete}/>
+                        <DeleteIcon onClick={this.props.onRemove}/>
                     </IconButton>
                 </ListItemSecondaryAction>
             </ListItem>

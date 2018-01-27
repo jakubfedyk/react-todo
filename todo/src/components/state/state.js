@@ -1,24 +1,46 @@
-import { database } from 'firebase'
 
-const ADD_TASK = 'ADD_TASK';
+import {database} from "../firebase";
+
 const FILTER_TASKS = 'FILTER_TASKS';
-const  REMOVE_TASK = 'REMOVE_TASK';
+const POPULATE_TASKS = 'POPULATE_TASKS';
 
-export const add = task => (
-    {
-        type: ADD_TASK,
-        task
-    });
+export const add = taskName => dispatch => {
+    database.ref('/tasks')
+        .push({
+            name: taskName
+        })
+};
 
-export const search = (value) => ({
+export const search = value => ({
     type: FILTER_TASKS,
     value
 });
 
-export const remove = task => ({
-    type: REMOVE_TASK,
-    task
+export const remove = taskId => dispatch => {
+    database.ref(`/tasks/${taskId}`).remove()
+};
+
+export const populate = tasks => ({
+    type: POPULATE_TASKS,
+    tasks
 });
+
+export const init = () => dispatch => {
+    database.ref('/tasks')
+        .on('value', (snapshot) => {
+            const firebaseData = Object.entries(
+                snapshot.val() || {}
+            );
+
+            const data = firebaseData.map(([id, value]) => {
+                value.id = id;
+                return value;
+            });
+
+            dispatch(populate(data));
+        });
+};
+
 
 const INITIAL_STATE = {
     query: '',
@@ -27,22 +49,17 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case ADD_TASK:
-            return {
-                ...state,
-                tasks: state.tasks.concat(action.task)
-            };
         case FILTER_TASKS:
             return {
                 ...state,
                 query: action.value
             };
-        case REMOVE_TASK:
-            return{
+        case POPULATE_TASKS:
+            return {
                 ...state,
-                tasks: state.tasks.filter(task => task !== action.task)
+                tasks: action.tasks
             };
         default:
-            return state
+            return state;
     }
 }
