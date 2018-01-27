@@ -13,13 +13,13 @@ const style = {
 };
 
 class Task extends Component {
-
     state = {
         checked: false
     };
 
     handleChange = (event) => {
         this.setState({ checked: !this.state.checked });
+        event.preventDefault();
     };
 
     render() {

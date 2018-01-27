@@ -4,6 +4,7 @@ import Task from './Task';
 import List from 'material-ui/List';
 
 
+
 const TaskList = (props) => (
     <List>
         {props.tasks.filter(task => task.name.toUpperCase().indexOf(props.query.toUpperCase()) !== -1)

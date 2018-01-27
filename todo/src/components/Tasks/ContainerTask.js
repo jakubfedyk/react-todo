@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
-import {add, remove, search, init} from '../state/state.js';
+import {add, init, remove, search} from '../state/state.js';
 import {connect} from 'react-redux';
 import TaskList from './TaskList';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper'
+import Paper from 'material-ui/Paper';
+import Snackbar from 'material-ui/Snackbar'
+
 
 const mapStateToProps = state => ({
     tasksList: state.tasks.tasks,
@@ -19,15 +21,43 @@ const mapDispatchToProps = dispatch => ({
     initTasks: () => dispatch(init())
 });
 
+const gridStyle = {
+    margin: 10,
+    padding: 5,
+    textAlign: 'center'
+}
+
+
 class ContainerTask extends Component {
 
     state = {
-        task: ' '
+        direction: 'column',
+        justify: 'space-around',
+        alignItems: 'center',
+
     };
+
+
+    state = {
+        task: ' ',
+        open: false
+    };
+
     componentWillMount() {
         this.props.initTasks();
     }
 
+    handleClick = () => {
+        this.setState({
+            open: true,
+        });
+    };
+
+    handleRequestClose = () => {
+        this.setState({
+            open: false,
+        });
+    };
 
     textChanged = event => {
         this.setState({task: event.target.value});
@@ -46,28 +76,41 @@ class ContainerTask extends Component {
     };
 
     render() {
+        const {alignItems, direction, justify} = this.state;
         return (
             <div>
                 <Paper>
-                    <Grid container spacing={24}>
-                        <Grid item xs={12} sm={6}>
-                            <form onSubmit={this.handleSubmit}>
-                                <TextField
-                                    id="task"
-                                    label="Task"
-                                    value={this.state.task}
-                                    onChange={this.textChanged}
-                                    margin="normal"
-                                />
-                                <Button type="submit" raised color="primary">Add</Button>
-                            </form>
+                    <Grid container spacing={12}>
+                        <Grid container
+                              alignItems={alignItems}
+                              direction={direction}
+                              justify={justify}
+                        >
+                            <Grid item xs={12} style={gridStyle}>
+                                <form onSubmit={this.handleSubmit}>
+                                    <TextField
+                                        id="task"
+                                        label="Task"
+                                        value={this.state.task}
+                                        onChange={this.textChanged}
+                                        margin="normal"
+                                    />
+                                    <Button type="submit" raised color="primary" onClick={this.handleClick}>Add</Button>
+                                    <Snackbar
+                                        open={this.state.open}
+                                        message="Event added to your calendar"
+                                        autoHideDuration={4000}
+                                        onRequestClose={this.handleRequestClose}
+                                    />
+                                </form>
+                            </Grid>
                         </Grid>
-                        <Grid item xs={12} sm={6} style={{textAlign: 'center'}}>
+                        <Grid tem xs={12} style={{textAlign: 'center'}}>
                             <div>
                                 <TextField placeholder="Search..." onChange={this.searchChanged}/>
                             </div>
                         </Grid>
-                        <Grid item xs={12} sm={12}>
+                        <Grid tem xs={12} style={{textAlign: 'center'}}>
                             <h2>My tasks</h2>
                             <TaskList
                                 tasks={this.props.tasksList}

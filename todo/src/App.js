@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Header from './components/Header';
-// import List from './components/List';
-// import Search from './components/Search';
+import Footer from './components/Footer';
 import Dashboard from './components/Dashboard'
 import './App.css';
-import ContainerTask from "./components/Tasks/ContainerTask";
 
 
 
@@ -16,9 +14,7 @@ class App extends Component {
             <div>
                 <Header/>
                 <Dashboard/>
-                <ContainerTask/>
-                {/*<List/>*/}
-                {/*<Search />*/}
+                <Footer/>
             </div>
         );
     }

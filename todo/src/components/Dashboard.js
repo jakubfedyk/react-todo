@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
+import ContainerTask from "../components/Tasks/ContainerTask";
+
+
 
 class Dashboard extends Component {
     render() {
         return(
         <div>
-            <h1>Hello</h1>
+            <ContainerTask/>
         </div>
         )
     }
