@@ -30,6 +30,7 @@ const gridStyle = {
 
 class ContainerTask extends Component {
 
+
     state = {
         direction: 'column',
         justify: 'space-around',
@@ -37,14 +38,16 @@ class ContainerTask extends Component {
 
     };
 
-
-    state = {
-        task: ' ',
-        open: false
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            open: false,
+        };
+    }
 
     componentWillMount() {
         this.props.initTasks();
+
     }
 
     handleClick = () => {
@@ -100,8 +103,8 @@ class ContainerTask extends Component {
                                             onClick={this.handleClick}>Add</Button>
                                     <Snackbar
                                         open={this.state.open}
-                                        message="Event added to your calendar"
-                                        autoHideDuration={4000}
+                                        message="Task added!"
+                                        autoHideDuration={400}
                                         onRequestClose={this.handleRequestClose}
                                     />
                                 </form>
