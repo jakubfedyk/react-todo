@@ -1,4 +1,3 @@
-
 import {database} from "../firebase";
 
 const FILTER_TASKS = 'FILTER_TASKS';

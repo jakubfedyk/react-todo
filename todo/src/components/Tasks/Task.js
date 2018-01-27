@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { Checkbox } from 'material-ui';
-import  IconButton  from 'material-ui/IconButton';
-import { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
+import React, {Component} from 'react';
+import {Checkbox} from 'material-ui';
+import IconButton from 'material-ui/IconButton';
+import {ListItem, ListItemSecondaryAction, ListItemText} from 'material-ui/List';
 import DeleteIcon from 'material-ui-icons/Delete';
 
 const style = {
@@ -18,12 +18,12 @@ class Task extends Component {
     };
 
     handleChange = (event) => {
-        this.setState({ checked: !this.state.checked });
+        this.setState({checked: !this.state.checked});
         event.preventDefault();
     };
 
     render() {
-        return(
+        return (
             <ListItem>
                 <Checkbox
                     checked={this.state.checked}

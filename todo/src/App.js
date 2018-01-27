@@ -6,7 +6,6 @@ import Dashboard from './components/Dashboard'
 import './App.css';
 
 
-
 class App extends Component {
 
     render() {
@@ -14,6 +13,7 @@ class App extends Component {
             <div>
                 <Header/>
                 <Dashboard/>
+                <br/>
                 <Footer/>
             </div>
         );

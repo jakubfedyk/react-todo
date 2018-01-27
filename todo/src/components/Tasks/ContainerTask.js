@@ -69,6 +69,7 @@ class ContainerTask extends Component {
 
     handleSubmit = event => {
         this.props.addTask(this.state.task);
+        event.preventDefault()
     };
 
     deleteSubmit = task => {
@@ -95,7 +96,8 @@ class ContainerTask extends Component {
                                         onChange={this.textChanged}
                                         margin="normal"
                                     />
-                                    <Button type="submit" raised color="primary" onClick={this.handleClick}>Add</Button>
+                                    <Button style={{marginLeft: 5}} type="submit" raised color="primary"
+                                            onClick={this.handleClick}>Add</Button>
                                     <Snackbar
                                         open={this.state.open}
                                         message="Event added to your calendar"

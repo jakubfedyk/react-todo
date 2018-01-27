@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import { Provider } from 'react-redux';
+import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
+import {Provider} from 'react-redux';
 import tasksReducer from './components/state/state';
 import App from './App';
 import thunk from 'redux-thunk';
@@ -19,7 +19,7 @@ const store = createStore(reducers, undefined, compose(
 ));
 
 ReactDOM.render(<Provider store={store}>
-    <App />
+    <App/>
 </Provider>, document.getElementById('root'));
 
 
